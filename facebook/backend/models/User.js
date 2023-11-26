@@ -1,4 +1,4 @@
-const mongoose = require("mongodb");
+const mongoose = require("mongoose");
 const { ObjectId } = mongoose.Schema;
 
 const userSchema = mongoose.Schema(
@@ -83,7 +83,7 @@ const userSchema = mongoose.Schema(
     search: [
       {
         user: {
-          type: mongoose.ObjectId,
+          type:ObjectId,
           ref: "User",
         },
       },
@@ -139,5 +139,4 @@ const userSchema = mongoose.Schema(
   }
 );
 
-
-module.exports=mongoose.model('User',userSchema);
+module.exports = mongoose.model("User", userSchema);
