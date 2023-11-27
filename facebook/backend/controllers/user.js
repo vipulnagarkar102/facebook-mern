@@ -1,4 +1,8 @@
-const { validateEmail, validateLength } = require("../helpers/validation");
+const {
+  validateEmail,
+  validateLength,
+  validateUsername,
+} = require("../helpers/validation");
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 exports.register = async (req, res) => {
@@ -15,50 +19,45 @@ exports.register = async (req, res) => {
       gender,
     } = req.body;
 
-    //email validation
     if (!validateEmail(email)) {
       return res.status(400).json({
-        message: "Invalid email address",
+        message: "invalid email address",
       });
     }
     const check = await User.findOne({ email });
     if (check) {
       return res.status(400).json({
         message:
-          "The email address alreadt exists,try with different email address",
+          "This email address already exists,try with a different email address",
       });
     }
 
-    //Length validation
     if (!validateLength(first_name, 3, 30)) {
       return res.status(400).json({
-        message: "first name must be between 3 to 30 characters",
+        message: "first name must between 3 and 30 characters.",
       });
     }
-
     if (!validateLength(last_name, 3, 30)) {
       return res.status(400).json({
-        message: "last name must be between 3 to 30 characters",
+        message: "last name must between 3 and 30 characters.",
       });
     }
-
-    if (!validateLength(password, 6, 15)) {
+    if (!validateLength(password, 6, 40)) {
       return res.status(400).json({
-        message: "Password must be atleast 6 characters",
+        message: "password must be atleast 6 characters.",
       });
     }
 
-    //decrypt password
     const cryptedPassword = await bcrypt.hash(password, 12);
-    console.log(cryptedPassword);
 
-    return;
+    let tempUsername = first_name + last_name;
+    let newUsername = await validateUsername(tempUsername);
     const user = await new User({
       first_name,
       last_name,
       email,
-      password,
-      username,
+      password: cryptedPassword,
+      username: newUsername,
       bYear,
       bMonth,
       bDay,
