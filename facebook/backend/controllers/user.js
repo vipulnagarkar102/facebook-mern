@@ -1,3 +1,4 @@
+const { generateToken } = require("../helpers/tokens");
 const {
   validateEmail,
   validateLength,
@@ -63,6 +64,13 @@ exports.register = async (req, res) => {
       bDay,
       gender,
     }).save();
+    const emailverificationToken = generateToken(
+      {
+        id: user._id.toString(),
+      },
+      "30m"
+    );
+    console.log(emailverificationToken);
     res.json(user);
   } catch (error) {
     res.status(500).json({ message: error.message });
