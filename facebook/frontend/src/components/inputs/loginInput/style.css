@@ -17,6 +17,9 @@
     margin-bottom: 10px;
     color: var();
 }
+.input_wrap input:focus{
+border-color: var(--blue-color);
+}
 .inputerror_border{
     border-color: #b94a48 !important;
 }
@@ -49,4 +52,18 @@
     border-left: 10px solid transparent;
     position: absolute;
     top: -10px;
+}
+.input_error_desktop{
+    position: absolute;
+    width:300px;
+    left: -19.5rem;
+    top: 0;
+}
+.error_arrow_left{
+    border-left: 10px solid #b94a48;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    position: absolute;
+    right: -9px;
+    top:13px
 }
