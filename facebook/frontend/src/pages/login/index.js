@@ -3,6 +3,7 @@ import { Formik, Form } from "formik";
 import { Link } from "react-router-dom";
 import "./style.css";
 import LoginInput from "../../components/inputs/loginInput";
+import * as Yup from "yup";
 const loginInfos = {
   email: "",
   password: "",
@@ -16,6 +17,11 @@ const Login = () => {
     const { name, value } = e.target;
     setLogin({ ...login, [name]: value });
   };
+  const loginValidation = Yup.object({
+    email:Yup.string().required("Email address is required."),
+    password:Yup.string().required("Password is required."),
+
+  });
 
   return (
     <div className="login">
@@ -35,6 +41,7 @@ const Login = () => {
                   email,
                   password,
                 }}
+                validationSchema={loginValidation}
               >
                 {(formik) => (
                   <Form>
@@ -49,6 +56,7 @@ const Login = () => {
                       name="password"
                       placeholder="Password"
                       onChange={handleLoginChange}
+                      bottom
                     />
                     <button type="submit" className="blue_btn">
                       Log In
