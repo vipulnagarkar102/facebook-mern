@@ -12,7 +12,7 @@ import rootReducer from "./reducers";
 const store = createStore(rootReducer, composeWithDevTools());
 
 ReactDOM.render(
-  <Provider store={}>
+  <Provider store={store}>
     <BrowserRouter>
       <App />
     </BrowserRouter>
