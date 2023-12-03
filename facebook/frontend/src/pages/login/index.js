@@ -8,7 +8,7 @@ const Login = () => {
   return (
     <div className="login">
       <div className="login_wrapper">
-        <LoginForm />
+       <LoginForm/>
         <RegisterForm/>
         <Footer/>
       </div>
