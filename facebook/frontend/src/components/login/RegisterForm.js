@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Formik, Form } from "formik";
 import RegisterInput from "../inputs/registerInput";
+import * as Yup from "yup";
 
 export const RegisterForm = () => {
   const userInfos = {
@@ -25,7 +26,7 @@ export const RegisterForm = () => {
     bDay,
     gender,
   } = user;
-  const yearTemp=new Date().getFullYear();
+  const yearTemp = new Date().getFullYear();
   const handleRegisterChange = (e) => {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
@@ -37,7 +38,27 @@ export const RegisterForm = () => {
     return new Date(bYear, bMonth, 0).getDate();
   };
   const days = Array.from(new Array(getDays()), (val, index) => 1 + index);
-
+  const registerValidation = Yup.object({
+    first_name: Yup.string()
+      .required("What's your First name?")
+      .min(2, "First name must be between 2 & 16 characters")
+      .max(16, "First name must be between 2 & 16 characters")
+      .matches(/^[aA-zZ]+$/, "Numbers & special characters not allowed"),
+    last_name: Yup.string()
+      .required("What's your Last name?")
+      .min(2, "Last name must be between 2 & 16 characters")
+      .max(16, "Last name must be between 2 & 16 characters")
+      .matches(/^[aA-zZ]+$/, "Numbers & special characters not allowed"),
+    email: Yup.string()
+      .required(
+        "You will need this when you login and if you ever need to reset your password"
+      )
+      .email("Enter a valid email address"),
+    password: Yup.string()
+      .required("Enter a combination of at least 6 numbers")
+      .min(6, "Password must be atleast 6 characters")
+      .max(36, "Password can't be more than 36 characters"),
+  });
   return (
     <div className="blur">
       <div className="register">
@@ -46,7 +67,20 @@ export const RegisterForm = () => {
           <span>Sign Up</span>
           <span>It's quick and easy</span>
         </div>
-        <Formik>
+        <Formik
+          enableReinitialize
+          initialValues={{
+            first_name,
+            last_name,
+            email,
+            password,
+            bYear,
+            bMonth,
+            bDay,
+            gender,
+          }}
+          validationSchema={registerValidation}
+        >
           {(formik) => (
             <Form className="register_form">
               <div className="reg_line">
@@ -87,11 +121,11 @@ export const RegisterForm = () => {
                     value={bDay}
                     onChange={handleRegisterChange}
                   >
-                  {days.map((day, i) => (
-                    <option value={day} key={i}>
-                      {day}
-                    </option>
-                  ))}
+                    {days.map((day, i) => (
+                      <option value={day} key={i}>
+                        {day}
+                      </option>
+                    ))}
                   </select>
                   <select
                     name="bMonth"
