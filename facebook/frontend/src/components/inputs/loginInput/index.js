@@ -1,12 +1,10 @@
-import React from "react";
 import "./style.css";
-import { ErrorMessage, useField } from "formik";
+import { useField, ErrorMessage } from "formik";
 import { useMediaQuery } from "react-responsive";
-
-const LoginInput = ({ placeholder, bottom, ...props }) => {
+export default function LoginInput({ placeholder, bottom, ...props }) {
   const [field, meta] = useField(props);
   const desktopView = useMediaQuery({
-    query: "(min-width:850px)",
+    query: "(min-width: 850px)",
   });
   return (
     <div className="input_wrap">
@@ -15,12 +13,12 @@ const LoginInput = ({ placeholder, bottom, ...props }) => {
           className={
             desktopView ? "input_error input_error_desktop" : "input_error"
           }
-          style={{ transform: "translate(3px)" }}
+          style={{ transform: "translateY(3px)" }}
         >
           {meta.touched && meta.error && <ErrorMessage name={field.name} />}
           {meta.touched && meta.error && (
             <div
-              className={desktopView ? "error_arrow_left" : "error-arrow_top"}
+              className={desktopView ? "error_arrow_left" : "error_arrow_top"}
             ></div>
           )}
         </div>
@@ -38,18 +36,19 @@ const LoginInput = ({ placeholder, bottom, ...props }) => {
           className={
             desktopView ? "input_error input_error_desktop" : "input_error"
           }
-          style={{ transform: "translate(2px)" }}
+          style={{ transform: "translateY(2px)" }}
         >
           {meta.touched && meta.error && <ErrorMessage name={field.name} />}
           {meta.touched && meta.error && (
             <div
               className={
-                desktopView ? "error_arrow_left" : "error-arrow_bottom"
+                desktopView ? "error_arrow_left" : "error_arrow_bottom"
               }
             ></div>
           )}
         </div>
       )}
+
       {meta.touched && meta.error && (
         <i
           className="error_icon"
@@ -58,6 +57,4 @@ const LoginInput = ({ placeholder, bottom, ...props }) => {
       )}
     </div>
   );
-};
-
-export default LoginInput;
+}

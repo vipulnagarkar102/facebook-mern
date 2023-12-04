@@ -36,8 +36,8 @@ a {
   --shadow-inset: rgba(255, 255, 255, 0.5);
 }
 
-/* buttons*/
-.blue_btn{
+/*----Buttons----*/
+.blue_btn {
   border: none;
   outline: none;
   background: var(--blue-color);
@@ -52,4 +52,14 @@ a {
   justify-content: center;
   gap: 6px;
   cursor: pointer;
+}
+/*----Buttons----*/
+.blur {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.768);
+  z-index: 99;
 }
