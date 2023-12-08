@@ -17,6 +17,7 @@ import {
 import { useSelector } from "react-redux";
 import SearchMenu from "./SearchMenu";
 import AllMenu from "./AllMenu";
+import UserMenu from "./userMenu/index";
 
 const Header = () => {
   const { user } = useSelector((user) => ({ ...user }));
@@ -85,6 +86,7 @@ const Header = () => {
         </div>
         <div className="circle_icon hover1">
           <ArrowDown />
+          <UserMenu user={user}/>
         </div>
       </div>
     </header>
