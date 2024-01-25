@@ -10,10 +10,40 @@ export default function SetttingPrivacy() {
         Settings & privacy
       </div>
       <div className="menu_item hover2">
-      <div className="small_circle">
-      <i className="settings_filled_icon"></i>
+        <div className="small_circle">
+          <i className="settings_filled_icon"></i>
+        </div>
+        <span>Settings</span>
       </div>
-      <span>Settings</span>
+      <div className="menu_item hover2">
+        <div className="small_circle">
+          <i className="privacy_checkup_icon"></i>
+        </div>
+        <span>Privacy Checkup</span>
+      </div>
+      <div className="menu_item hover2">
+        <div className="small_circle">
+          <i className="privacy_shortcuts_icon"></i>
+        </div>
+        <span>Privacy Shortcuts</span>
+      </div>
+      <div className="menu_item hover2">
+        <div className="small_circle">
+          <i className="activity_log_icon"></i>
+        </div>
+        <span>Activity log</span>
+      </div>
+      <div className="menu_item hover2">
+        <div className="small_circle">
+          <i className="news_icon"></i>
+        </div>
+        <span>News Feeds</span>
+      </div>
+      <div className="menu_item hover2">
+        <div className="small_circle">
+          <i className="language_icon"></i>
+        </div>
+        <span>Language</span>
       </div>
     </div>
   );
