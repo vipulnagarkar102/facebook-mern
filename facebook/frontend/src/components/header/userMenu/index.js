@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import SetttingPrivacy from "./SetttingPrivacy";
+import HelpSupport from "./HelpSupport";
+import DisplayAccessibility from "./DisplayAccessibility";
 
 export default function UserMenu({ user }) {
-  const [visible, setVisible] = useState(1);
+  const [visible, setVisible] = useState(0);
   return (
     <div className="menu">
       {visible === 0 && (
@@ -29,7 +31,7 @@ export default function UserMenu({ user }) {
             </div>
           </div>
           <div className="menu_splitter"></div>
-          <div className="menu_item hover2">
+          <div className="menu_item hover2" onClick={()=>{setVisible(1);}}>
             <div className="small_circle">
               <i className="settings_filled_icon"></i>
             </div>
@@ -38,7 +40,7 @@ export default function UserMenu({ user }) {
               <i className="right_icon"></i>
             </div>
           </div>
-          <div className="menu_item hover2">
+          <div className="menu_item hover2" onClick={()=>{setVisible(2);}}>
             <div className="small_circle">
               <i className="help_filled_icon"></i>
             </div>
@@ -47,7 +49,7 @@ export default function UserMenu({ user }) {
               <i className="right_icon"></i>
             </div>
           </div>
-          <div className="menu_item hover2">
+          <div className="menu_item hover2" onClick={()=>{setVisible(3);}}>
             <div className="small_circle">
               <i className="dark_filled_icon"></i>
             </div>
@@ -64,7 +66,9 @@ export default function UserMenu({ user }) {
           </div>
         </div>
       )}
-      {visible === 1 && <SetttingPrivacy />}
+      {visible === 1 && <SetttingPrivacy setVisible={setVisible}/>}
+      {visible === 2 && <HelpSupport setVisible={setVisible}/>}
+      {visible === 3 && <DisplayAccessibility setVisible={setVisible}/>}
     </div>
   );
 }

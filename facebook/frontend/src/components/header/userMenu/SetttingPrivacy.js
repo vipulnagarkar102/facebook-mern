@@ -1,13 +1,14 @@
 import React from "react";
 
-export default function SetttingPrivacy() {
+export default function SetttingPrivacy({setVisible}) {
   return (
     <div className="absolute_wrap">
       <div className="absolute_wrap_header">
-        <div className="circle">
+        <div className="circle" onClick={()=>{setVisible(0);
+        }}>
           <i className="arrow_back_icon"></i>
         </div>
-        Settings & privacy
+        Settings & Privacy
       </div>
       <div className="menu_item hover2">
         <div className="small_circle">
@@ -48,3 +49,6 @@ export default function SetttingPrivacy() {
     </div>
   );
 }
+
+
+//2:07
